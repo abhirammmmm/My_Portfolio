@@ -1,0 +1,1304 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  /* 
+        Change favorite color
+        Default: hsl(230, 55%, 55%)
+        Purple: hsl(245, 55%, 55%) - Blue: hsl(210, 55%, 55%)
+        Pink: hsl(340, 55%, 55%) - Green: hsl(162, 55%, 55%)
+        Orange: hsl(14, 55%, 55%)
+
+        For more colors visit: https://colors.dopely.top/color-pedia
+        -> Choose any color 
+        -> Click on tab (Color Conversion)
+        -> Copy the color mode (HSL)
+  */
+  --hue: 230;
+  --certificates-color: hsl(var(--hue), 35%, 15%);
+  --first-color: hsl(var(--hue), 55%, 55%);
+  --first-color-light: hsl(var(--hue), 55%, 65%);
+  --first-color-alt: hsl(var(--hue), 50%, 50%);
+  --title-color: hsl(var(--hue), 30%, 95%);
+  --text-color: hsl(var(--hue), 20%, 80%);
+  --text-color-light: hsl(var(--hue), 20%, 70%);
+  --body-color: hsl(var(--hue), 40%, 16%);
+  --container-color: hsl(var(--hue), 40%, 20%);
+  --section-hover-color: hsl(var(--hue), 40%, 10%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Syne", sans-serif;
+  --biggest-font-size: 3rem;
+  --big-font-size: 1.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 5.5rem;
+    --big-font-size: 2.75rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1.125rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+input,
+button,
+textarea {
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+p {
+  line-height: 130%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 2rem;
+}
+/* Fade-in Animation for Sections */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply Animation to Sections */
+section {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+    transition: background-color 0.4s ease-in-out;
+}
+section:hover {
+  background-color: var(--section-hover-color);
+}
+
+section:nth-child(odd) {
+    animation-delay: 0.2s; /* Delays for alternating sections */
+}
+
+.section__title {
+  text-align: center;
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-bold);
+  margin-bottom: 2rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: var(--z-fixed);
+}
+
+.nav{
+  position: relative;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo{
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+}
+
+.nav__toggle,
+.nav__close{
+  font-size: 1.5rem;
+  color: var(--title-color);
+  cursor: pointer;
+}
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px) {
+  .nav__menu{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: hsl(var(--hue), 70%, 4%, .2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 80%;
+    height: 100%;
+    padding: 7rem 3rem;
+    transition: right .4s;
+  }
+}
+
+.nav__list{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .9s;
+}
+
+.nav__link{
+  color: var(--title-color);
+  position: relative;
+  display: inline-block;
+}
+
+.nav__link::after{
+  content: '';
+  width: 0;
+  height: 5px;
+  background-color: var(--first-color-light);
+  position: absolute;
+  left: 0;
+  bottom: -.5rem;
+  transition: width .9s ease;
+}
+
+.nav__link:hover{
+  color: var(--first-color-light);
+}
+
+.nav__link:hover::after{
+  width: 60%;
+}
+
+.nav__close{
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu{
+  right: 0;
+}
+
+/* Add blur header */
+.blur-header::after{
+  content: '';
+  position: absolute;
+  width: 1000%;
+  height: 100%;
+  background-color: hsla(var(--hue), 70%, 4%, .2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Active link */
+.active-link{
+  color: var(--first-color-light);
+}
+
+.active-link::after{
+  width: 30%;
+}
+
+/*=============== HOME ===============*/
+.home__container{
+  row-gap: 2rem;
+  padding-top: 1rem;
+}
+
+.home__img{
+  width: 500px;
+  justify-self: center;
+  mask-image: linear-gradient(to bottom, hsla(var(--hue), 40%, 16%) 60%, transparent 100%);
+}
+
+.home__name{
+  font-size: 73px;
+  font-weight: var(--font-bold);
+  word-break: break-word;
+  margin-bottom: 1rem;
+}
+.home__profession {
+  position: relative;
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+}
+
+.home__profession::after {
+  content: '';
+  position: absolute;
+  width: 0; /* Start with no underline */
+  height: 3px;
+  background-color: var(--text-color); /* Underline color */
+  left: 0;
+  bottom: -5px; /* Position of the underline */
+  transition: width 0.5s ease-out; /* Smoothly transition the width */
+}
+
+.underline {
+  width: 100%; /* Expand underline to full width when typing is done */
+}
+
+
+
+
+@keyframes underline {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes remove-underline {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+.home__scroll{
+  color: var(--title-color);
+  display: flex;
+  column-gap: .5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.home__scroll-box{
+  background-color: var(--first-color);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.home__scroll-text{
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color 0.4s ease;
+}
+
+.home__scroll-box i{
+  color: var(--title-color);
+  animation: scroll-dowm 3s infinite;
+}
+
+/* Animate scroll icon */
+@keyframes scroll-dowm {
+  0%{
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  50%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(.6rem);
+    opacity: 0;
+  }
+}
+
+/*=============== BUTTON ===============*/
+.button{
+  display: inline-flex;
+  cursor: pointer;
+  justify-content: center;
+  background-color: var(--first-color);
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;;
+}
+
+
+.button:hover{
+  background-color: var(--first-color-alt);
+  transform: scale(1.05); 
+}
+/* About Me Typing Animation */
+#typing-text {
+  font-weight: bold;
+  color: var(--primary-color); /* Set the text color to your desired highlight */
+  border-right: 2px solid var(--primary-color); /* Optional: Typing cursor effect */
+  padding-right: 0.1rem;
+}
+
+.cursor {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  animation: blink 0.7s step-end infinite; /* Blinking cursor animation */
+}
+
+@keyframes blink {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+/* Close Button Styling */
+.close-form {
+  font-size: 2rem;
+  color: var(--text-color);
+  position: absolute; /* Change to absolute positioning */
+  right: -30px; /* Align it right next to the button */
+  top: 0; /* Align it vertically at the same level */
+  margin-left: 25px; /* Create some space between the button and the "X" */
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.close-form:hover {
+  transform: scale(1.5);
+  color: rgb(172, 18, 18); /* Slightly enlarge the close button on hover */
+}
+
+/* Show Close Button when Form is Visible */
+.show-close {
+  display: inline; /* Show the close button */
+  opacity: 1; /* Make sure it's visible */
+}
+
+/* Make sure the button and "X" are positioned properly */
+.about__content {
+  position: relative; /* Add relative positioning to the container */
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* Make sure it's inline for alignment with "X" */
+}
+
+.button:hover {
+  background-color: var(--hover-color); /* Adjust hover color */
+}
+
+/* Explanation and Form Styles */
+.cv__explanation {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cv__form {
+  margin-top: 15px;
+  display: none; /* Hidden initially */
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cv__input {
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.cv__submit {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cv__submit:hover {
+  background-color: var(--section-hover-color);
+}
+
+.cv__feedback {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--success-color); /* Use a green or success color */
+}
+
+.show-element {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/*=============== WORKS ===============*/
+.work{
+  background-color: var(--container-color);
+}
+.work__tools {
+  display: none; /* Initially hide the tools */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.work__card:hover .work__tools {
+  display: block;
+  opacity: 1; /* Show tools on hover */
+}
+
+.work__img {
+  width: 100%;
+  height: 250px; /* Fixed height */
+  object-fit: cover; /* Ensure image fits without distortion */
+}
+
+.work__card {
+  background-color: var(--container-color);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.work__link{
+  display: block;
+  position: relative;
+  background-color: var(--body-color);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  color: var(--text-color);
+  transition: transform .4s;
+}
+
+.work__title{
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: .75rem;
+}
+
+.work__description{
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-color-light);
+}
+
+.work__link i{
+  position: absolute;
+  top: 1.8rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--first-color-light);
+  transition: tranform .4s;
+}
+
+.work__link::hover{
+  transform: translateY(-.35rem);
+}
+
+.work__link::hover i{
+  transform: translateX(-5rem);
+}
+.upcoming-projects {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.upcoming-projects__title {
+  font-size: 1.5rem;
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.upcoming-projects__description {
+  font-size: 1.25rem;
+  color: var(--text-color-light);
+}
+
+/*=============== INFO SECTION ===============*/
+.info__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--container-color);
+  border-radius: 10px;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.info__container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image Styling */
+.about__img {
+  width: 100%;
+  border-radius: 15px;
+  filter: grayscale(50%);
+  transition: filter 0.4s ease, transform 0.4s ease-out, opacity 0.4s ease;
+  opacity: 0;
+  transform: scale(1.1);
+  position: relative;
+  z-index: 1;
+  /* Add fade at the bottom */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+}
+
+.about__img.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: grayscale(0%);
+}
+
+.about__img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Fade effect at the bottom */
+.about__img::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, var(--body-color), transparent);
+  z-index: -1; /* To make the gradient fade below the image */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about__img.active::after {
+  opacity: 1;
+}
+
+/* Adding smoother animations */
+.about__img {
+  animation: fadeInScale 1s ease-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.info__title {
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.info__title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background-color: var(--first-color);
+}
+
+.about__description {
+  font-size: var(--normal-font-size);
+  color: var(--text-color-light);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* Button Styling */
+.about__button {
+  padding: 0.75rem 2rem;
+  background-color: var(--first-color);
+  color: var(--title-color);
+  border-radius: 50px;
+  font-size: var(--normal-font-size);
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.about__button:hover {
+  background-color: var(--first-color-light);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* EXPERIENCE */
+.experience__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Initially hide the experience body */
+.experience__body {
+  display: none;
+  opacity: 0;
+  transform: translateY(-20px); /* Hidden upward */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Company section */
+.experience__data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--container-color);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* Hover effect for the company names */
+.experience__company {
+  font-size: 1.25rem; /* Smaller text initially */
+  font-weight: var(--font-bold);
+  color: var(--title-color);
+  transition: font-size 0.4s ease, color 0.4s ease;
+}
+
+.experience__data:hover .experience__company {
+  font-size: 1.75rem; /* Enlarge on hover */
+  color: var(--first-color-light);
+}
+
+/* Logo */
+.experience__logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.experience__data:hover .experience__logo {
+  opacity: 1;
+  transform: scale(1.1); /* Slight logo zoom on hover */
+}
+
+/* Hover effect for the experience body */
+.experience__data:hover .experience__body {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience__profession {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.experience__date {
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.experience__list {
+  list-style: disc;
+  margin-left: 1.5rem;
+  color: var(--text-color-light);
+}
+
+/* Add some interactivity */
+.experience__data:hover {
+  background-color: var(--section-hover-color);
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+
+
+/* SKILLS */
+.skills__img {
+  width: 65px;
+  margin-bottom: .5rem;
+  transition: transform 0.3s ease; /* Add smooth transition */
+}
+
+.skills__name {
+  font-size: var(--small-font-size);
+}
+
+/* Updated Skills Content for Centering */
+.skills__content {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.skills__name{
+  font-weight: var(--h2-font-size);
+  position: relative;
+}
+/* Add hover effect */
+.skills__content > div:hover .skills__img {
+  transform: translateY(-15px); /* Lift up by 10px on hover */
+}
+
+
+/*=============== SERVICES ===============*/
+.services {
+  background-color: var(--container-color);
+  padding: 2rem 0; /* Add some padding for aesthetics */
+}
+
+.services__container,
+.more-certs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Change to 3 columns */
+  gap: 10rem; /* Space between cards */
+}
+
+.more-certs.hidden {
+  display: none;
+}
+
+.services__card {
+  border: 1px solid var(--body-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: var(--certificates-color); /* Card background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation on hover */
+}
+
+.services__card:hover {
+  transform: translateY(-15px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.services__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: 0.75rem;
+  color: var(--first-color); /* Highlight title color */
+}
+
+.services__description {
+  font-size: 0.9rem; /* Adjust font size for better readability */
+}
+
+/* Button Container */
+.button-container {
+  margin-top: 1.5rem; /* Space above the button */
+  text-align: center; /* Center the button */
+}
+/* Show More Button Styled Like Home Scroll Button */
+.show-more {
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--title-color); /* Same color as Home Scroll */
+  column-gap: .5rem; /* Space between icon and text */
+  cursor: pointer;
+}
+
+.show-more-box {
+  background-color: var(--first-color); /* Box color same as scroll */
+  width: 40px; /* Increase width to avoid text cutting */
+  height: 40px; /* Increase height to avoid text cutting */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  transition: transform 0.4s ease; /* Smooth scale on hover */
+}
+
+.show-more:hover .show-more-box {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.show-more-text {
+  font-weight: var(--font-semi-bold); /* Same weight as scroll text */
+  transition: color 0.4s ease;
+  font-size: 1rem; /* Adjust font size to fit the text properly */
+}
+
+.show-more:hover .show-more-text {
+  color: var(--first-color-light); /* Text color change on hover */
+}
+
+
+
+
+/*=============== CONTACT ===============*/
+.contact__container{
+  row-gap: 4rem;
+}
+
+.contact__group,
+.contact__form{
+  gap: 1rem;
+}
+
+.contact__form{
+  position: relative;
+}
+
+.contact__input{
+  padding: 1.25rem;
+  background-color: var(--container-color);
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.contact__input:placeholder{
+  color: var(--text-color-light);
+}
+
+.contact__area{
+  height: 10rem;
+  resize: none;
+}
+
+.contact__button{
+  background-color: var(--first-color);
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.contact__button:hover{
+  background-color: var(--first-color-light);
+}
+
+.contact__social{
+  grid-template-columns: repeat(2, max-content);
+  justify-content: center;
+  column-gap: 3rem;
+}
+
+.contact__social-link{
+  color: var(--title-color);
+  display: inline-flex;
+  column-gap: .25rem;
+  align-items: center;
+  transition: color .4s;
+}
+.contact__title {
+  text-align: center;
+  margin-bottom: 2rem; /* Adjust margin if needed */
+}
+
+
+.contact__social-link i{
+  font-size: 1.5rem;
+}
+
+.contact__social-link span{
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.contact__social-link:hover{
+  color: var(--first-color-light);
+}
+
+.contact__message{
+  position: absolute;
+  left: 0;
+  bottom: -2rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+/*=============== FOOTER ===============*/
+.footer{
+  background-color: var(--container-color);
+}
+
+.footer__container{
+  padding-block: 3rem 2rem;
+  row-gap: 3rem;
+}
+
+.footer__links{
+  display: flex;
+  justify-content: center;
+  column-gap: 2.5rem;
+}
+
+.footer__link{
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+}
+
+.footer__link:hover{
+  color: var(--first-color-light);
+}
+
+.footer__copy{
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  text-align: center;
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  background-color: hsl(var(--hue), 20%, 20%);
+}
+
+::-webkit-scrollbar-thumb{
+  width: .6rem;
+  background-color: hsl(var(--hue), 20%, 30%);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  width: .6rem;
+  background-color: hsl(var(--hue), 20%, 40%);
+}
+/*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--container-color);
+  display: inline-flex;
+  padding: 10px;
+  color: var(--title-color);
+  font-size: 1.25rem;
+  border-radius: 50%; /* Rounded shape */
+  box-shadow: 0 4px 12px hsla(var(--hue), 30%, 8%, .3);
+  z-index: var(--z-tooltip);
+  cursor: pointer;
+  
+  /* Add smooth transitions for appearance, scaling, and hover */
+  opacity: 0;
+  transform: scale(0.9);
+  transition: bottom 0.5s ease-out, opacity 0.5s ease-out, transform 0.4s ease-out;
+}
+
+/* Smooth show scroll with a fade-in and bounce effect */
+.show-scroll {
+  bottom: 3rem;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover: Grow the button slightly and apply a glow */
+.scrollup:hover {
+  transform: translateY(-0.5rem) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 165, 0, 0.5); /* Glow effect */
+}
+
+/* Active: Add scaling feedback when clicked */
+.scrollup:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 300px) {
+  .container{
+    margin-inline: 1rem;
+  }  
+  .skills__content{
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 540px) {
+  .home__container, .work__container, .info__container, .services__container, .contact__container{
+    grid-template-columns: 350px;
+    justify-content: center;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    width: 50%;
+  }
+
+  .home__container {
+    display: grid;
+    grid-template-columns: repeat(2, 350px);
+  }
+
+  .home__data {
+    align-self: flex-end;
+    padding-bottom: 3rem;
+    order: -1;
+  }
+
+  .home__scroll {
+    grid-column: 1 / 3;
+  }
+
+  /* Ensure work container uses grid layout */
+  .work__container {
+    display: grid; /* Add display: grid */
+    grid-template-columns: repeat(2, 350px);
+    gap: 2rem; /* Optional: Add some gap between grid items */
+  }
+
+  .info__container{
+    grid-template-columns: initial;
+  }
+  .about{
+    grid-template-columns: repeat(2, 350px);
+    align-items: center;
+  }
+  .about__content{
+    order: 1;
+  }
+  .experience__data{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skills__content{
+    grid-template-columns: repeat(5, max-content);
+    justify-content: initial;
+    column-gap: 7rem;
+  }
+  .services__container{
+    grid-template-columns: repeat(2, 320px);
+  }
+}
+@media screen and (min-width: 1150px) {
+  .container{
+    margin-inline: auto;
+  }
+  .section{
+    padding-block: 7rem 5rem;
+  }
+  .section__title{
+    margin-bottom: 4rem;
+  }
+  .nav{
+    height: calc(--header-height) + 2rem;
+  }
+  .nav__toggle, .nav__close{
+    display: none;
+  }
+  .nav__menu{
+    width: initial;
+  }
+  .nav__list{
+    flex-direction: row;
+    color: var(--first-color-light);
+    column-gap: 4rem;
+  }
+  .home__container{
+    grid-template-columns: 375px 350px;
+    gap: 3rem 16rem;
+  }
+  .home__name{
+    margin-bottom: 1.5rem;
+  }
+  .home__profession::after{
+    bottom: -1rem;
+    width: 35%;
+  }
+  .work__container{
+    grid-template-columns: repeat(2, 540px);
+    gap: 2.5rem;
+  }
+  .work__link{
+    padding: 3rem 3rem 2rem;
+  }
+  .work__title{
+    font-size: var(--h2-font-size);
+    margin-bottom: 1rem;
+  }
+  .work__link i{
+    font-size: 2rem;
+  }
+  .info__container{
+    row-gap: 4rem;
+  }
+  .info__title{
+    font-size: var(--normal-font-size);
+    margin-bottom: 3.5rem;
+  }
+  .about{
+    grid-template-columns: 320px 420px;
+    column-gap: 11.5rem;
+  }
+  .about__img{
+    width: 320px;
+  }
+  .about__description{
+    margin-bottom: 3rem;
+  }
+  .about__button{
+    width: initial;
+  }
+  .experience__content{
+    grid-template-columns: 320px 380px;
+    column-gap: 11.5rem;
+  }
+  .experience__company{
+    font-size: var(--h1-font-size);
+  }
+  .experience__profession{
+    margin-bottom: .5rem;
+  }
+  .experience__date{
+    font-size: var(--normal-font-size);
+    margin-bottom: 1.5rem;
+  }
+  .skills__content{
+    grid-template-columns: repeat(6, max-content);
+  }
+  .services__container{
+    grid-template-columns: repeat(2, 350px);
+    gap: 6rem 13rem;
+  }
+  .services__icon{
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact__container{
+    grid-template-columns: 580px;
+  }
+  .contact__group{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact__area{
+    height: 15rem;
+  }
+  .conatct__button{
+    width: max-content;
+    justify-self: center;
+    margin-top: 1.5rem;
+  }
+  .contact__message{
+    bottom: 4.5rem;
+  }
+  .contact__social{
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 5rem;
+  }
+  .footer__container{
+    padding-block: 3rem;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: space-between;
+  }
+  .footer__links{
+    column-gap: 4rem;
+    order: 1;
+  }
+  .scrollup{
+    right: 3rem;
+  }
+}

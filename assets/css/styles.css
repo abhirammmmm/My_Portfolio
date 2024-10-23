@@ -1302,3 +1302,143 @@ section:nth-child(odd) {
     right: 3rem;
   }
 }
+/* Base styles: applied to all screen sizes */
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Large screens - Desktops and larger tablets (1200px and above) */
+@media (max-width: 1200px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        max-width: 85%;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    /* Adjust for larger screen sizes */
+    .navbar {
+        justify-content: space-between;
+    }
+}
+
+/* Medium screens - Tablets and small desktops (992px to 1199px) */
+@media (max-width: 992px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .section {
+        padding: 50px 15px;
+    }
+
+    /* Adjust padding and margins for smaller screens */
+    .navbar {
+        flex-direction: row;
+    }
+
+    .flex-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    /* Adjust about section images */
+    .about__img, .work__img {
+        width: 80%;
+    }
+}
+
+/* Small screens - Tablets in portrait mode and large phones (768px to 991px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 95%;
+    }
+
+    /* Stack elements vertically */
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .about__img, .work__img {
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .section {
+        padding: 40px 10px;
+    }
+}
+
+/* Extra small screens - Phones in landscape and portrait mode (576px to 767px) */
+@media (max-width: 576px) {
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .section {
+        padding: 30px 8px;
+    }
+
+    /* Adjust font sizes */
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 90%;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    /* Make images full width */
+    .about__img, .work__img {
+        width: 100%;
+    }
+}
+
+/* Very small screens - Phones in portrait mode (less than 576px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .section {
+        padding: 25px 5px;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    /* Stack flex items */
+    .flex-container {
+        flex-direction: column;
+    }
+
+    /* Make images responsive */
+    .about__img, .work__img {
+        width: 100%;
+        height: auto;
+    }
+}

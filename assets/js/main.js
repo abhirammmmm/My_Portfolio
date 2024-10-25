@@ -204,26 +204,36 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(infoSection);
     observer.observe(aboutImg);
   });
+  document.addEventListener('DOMContentLoaded', function () {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const certificateLists = document.querySelectorAll('.certificate-list');
   
-  document.addEventListener('DOMContentLoaded', function() {
-    const showMoreBtn = document.getElementById('showMoreBtn');
-    const moreCerts = document.getElementById('moreCerts');
-    const icon = showMoreBtn.querySelector('i'); // Grab the icon element
-    const text = showMoreBtn.querySelector('.show-more-text'); // Grab the text element
-
-    showMoreBtn.addEventListener('click', function() {
-        if (moreCerts.classList.contains('hidden')) {
-            moreCerts.classList.remove('hidden'); // Show the additional certificates
-            text.textContent = 'Show Less'; // Change button text
-            icon.className = 'ri-arrow-up-line'; // Change icon to up arrow
-        } else {
-            moreCerts.classList.add('hidden'); // Hide the additional certificates
-            text.textContent = 'Show More'; // Change button text
-            icon.className = 'ri-arrow-down-line'; // Change icon to down arrow
-        }
+    // Initially, only show the programming certificates
+    certificateLists.forEach(list => {
+      if (list.classList.contains('programming')) {
+        list.style.display = 'flex'; // Set to flex instead of grid
+      } else {
+        list.style.display = 'none';
+      }
     });
-});
-
+  
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+  
+        const category = button.getAttribute('data-category');
+        certificateLists.forEach(list => {
+          if (list.classList.contains(category)) {
+            list.style.display = 'flex'; // Set to flex instead of grid
+          } else {
+            list.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+ 
 
   // Add event listener to the form submission
 /*=============== SHOW SCROLL UP ===============*/ 

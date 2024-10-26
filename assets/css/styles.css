@@ -1503,7 +1503,12 @@ img {
     padding: 1rem; /* Adjust padding to prevent overflow */
     overflow-x: hidden;
   }
-  
+  .skills__content {
+    grid-template-columns: repeat(3, 1fr); /* Use three columns for skills */
+  }
+  .skills__img {
+    width: 42px;  /* Smaller size for tablets and mobile */
+  }
   .experience__content {
     display: flex;
     flex-direction: column;
@@ -1513,14 +1518,16 @@ img {
 
 /* Screens from 406px to 540px */
 @media (min-width: 406px) and (max-width: 540px) {
-  .info__container, .skills__content {
+  .info__container{
     display: grid;
     grid-template-columns: 2fr; /* Stack content in a single column */
     gap: 1.5rem;
     padding: 1rem; /* Adjust padding to prevent overflow */
     overflow-x: hidden;
   }
-  
+  .skills__content {
+    grid-template-columns: repeat(3, 1fr); /* Use three columns for skills */
+  }
   .experience__content {
     display: flex;
     flex-direction: column;
@@ -1534,7 +1541,9 @@ img {
     grid-template-columns: 1fr; /* Two columns for better use of space */
     gap: 2rem;
   }
-  
+  .skills__content {
+    grid-template-columns: repeat(3, 1fr); /* Use three columns for skills */
+  }
   .experience__content {
     grid-template-columns: 1fr 1fr; /* Display in two columns */
   }

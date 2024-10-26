@@ -1496,13 +1496,26 @@ img {
     flex-direction: column;
     align-items: center;
   }
+  .info__container, .skills__content {
+    display: grid;
+    grid-template-columns: 2fr; /* Stack content in a single column */
+    gap: 1.5rem;
+    padding: 1rem; /* Adjust padding to prevent overflow */
+    overflow-x: hidden;
+  }
+  
+  .experience__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 /* Screens from 406px to 540px */
 @media (min-width: 406px) and (max-width: 540px) {
   .info__container, .skills__content {
     display: grid;
-    grid-template-columns: 1fr; /* Stack content in a single column */
+    grid-template-columns: 2fr; /* Stack content in a single column */
     gap: 1.5rem;
     padding: 1rem; /* Adjust padding to prevent overflow */
     overflow-x: hidden;
@@ -1517,8 +1530,8 @@ img {
 
 /* Screens from 541px to 767px (Added new breakpoint) */
 @media (min-width: 541px) and (max-width: 767px) {
-  .info__container, .skills__content {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for better use of space */
+  .info__container {
+    grid-template-columns: 1fr; /* Two columns for better use of space */
     gap: 2rem;
   }
   
@@ -1529,11 +1542,6 @@ img {
 
 /* Screens from 768px to 991px */
 @media (min-width: 768px) and (max-width: 991px) {
-  .info__container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
   .skills__content {
     grid-template-columns: repeat(3, 1fr); /* Use three columns for skills */
   }
@@ -1541,7 +1549,7 @@ img {
 
 /* Large tablets and small desktops (992px to 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
-  .info__container, .skills__content {
+  .skills__content {
     grid-template-columns: repeat(3, 1fr); /* Three columns */
     gap: 2.5rem;
   }
@@ -1549,11 +1557,6 @@ img {
 
 /* Small Desktops and above (1200px to 1440px) */
 @media (min-width: 1200px) and (max-width: 1440px) {
-  .info__container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-  }
-
   .skills__content {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -1561,7 +1564,7 @@ img {
 
 /* Very large screens (Above 1440px) */
 @media (min-width: 1441px) {
-  .info__container, .skills__content {
+  .skills__content {
     grid-template-columns: repeat(4, 1fr); /* Use four columns */
     gap: 4rem;
   }
@@ -1570,3 +1573,136 @@ img {
     grid-template-columns: repeat(3, 1fr); /* Three-column layout for large screens */
   }
 }
+/* Fix for Experience Section from 768px and above */
+
+/* Screens from 768px to 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+  .info__container {
+    grid-template-columns: 1fr; /* Stack content in a single column */
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .experience__content {
+    display: flex;
+    flex-direction: column; /* Ensure Experience content stacks vertically */
+    gap: 1.5rem;
+    padding: 1rem; /* Adjust padding to prevent overflow */
+  }
+
+  .experience__data {
+    width: 100%; /* Ensure Experience items take full width */
+    max-width: 100%; /* Prevent overflow */
+  }
+
+  .about__content, .about__img {
+    margin-bottom: 2rem; /* Add spacing to separate content */
+  }
+}
+/* Fix for Experience and Skills Sections from 992px upwards */
+
+/* Screens from 992px to 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .info__container {
+    grid-template-columns: 1fr ; /* Two equal columns */
+    gap: 3rem;
+    align-items: center;
+    justify-content: center; /* Center the content */
+  }
+
+  .experience__content {
+    display: flex;
+    flex-direction: column; /* Ensure experience content stacks properly */
+    gap: 2rem;
+    max-width: 100%; /* Prevent overflow */
+    margin: 0 auto; /* Center align */
+  }
+
+  .experience__data {
+    width: 100%; /* Full width */
+    max-width: 100%; /* Ensure no overflow */
+  }
+
+  .skills__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for skills */
+    gap: 2rem;
+    max-width: 100%; /* Ensure content doesn't overflow */
+    margin: 0 auto; /* Center align skills */
+  }
+}
+
+/* Screens from 1200px to 1440px */
+@media (min-width: 1200px) and (max-width: 1440px) {
+  .info__container {
+    grid-template-columns: 1fr; /* Two-column layout */
+    gap: 4rem;
+    align-items: center;
+    justify-content: center; /* Center the content */
+  }
+
+  .experience__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout for experience */
+    gap: 3rem;
+    max-width: 90%; /* Limit width */
+    margin: 0 auto; /* Center align the section */
+  }
+
+  .skills__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns for skills */
+    gap: 2.5rem;
+    max-width: 80%; /* Restrict width for alignment */
+    margin: 0 auto; /* Center align skills */
+  }
+}
+
+/* Very large screens (Above 1440px) */
+@media (min-width: 1441px) {
+  .info__container {
+    grid-template-columns: 1fr; /* Maintain two equal columns */
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    padding: 4rem;
+  }
+
+  .experience__content {
+    display: grid;
+    text-size-adjust: 90%;
+    grid-template-columns: repeat(2, 1fr); /* Two-column layout for experience */
+    gap: 4rem;
+    max-width: 80%; /* Further restrict width */
+    margin: 0 auto; /* Center align */
+  }
+
+  .skills__content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five columns for skills */
+    gap: 3rem;
+    max-width: 75%; /* Limit width for alignment */
+    margin: 0 auto; /* Center align */
+  }
+}
+@media screen and (max-width: 300px) {
+  h1 { font-size: 1.25rem; }
+  h2 { font-size: 1.125rem; }
+  h3 { font-size: 1rem; }
+  body { font-size: 0.875rem; }
+}
+
+@media screen and (min-width: 540px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  body { font-size: 1rem; }
+}
+
+@media screen and (min-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  body { font-size: 1.125rem; }
+}
+

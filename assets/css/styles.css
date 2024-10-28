@@ -855,6 +855,7 @@ section:nth-child(odd) {
 
 
 /*=============== SERVICES ===============*/
+
 /* Certificates Section Styles */
 .certificates {
   text-align: center;
@@ -868,7 +869,7 @@ section:nth-child(odd) {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 
@@ -879,9 +880,21 @@ section:nth-child(odd) {
   gap: 2rem;
   width: 100%;
 }
+/* Styles for the buttons with icons */
+.button-icon {
+   width: 20px;          /* Adjust the size as needed */
+   height: 20px;
+   margin-right: 8px;    /* Space between the icon and text */
+   vertical-align: middle;
+}
 
 .category-btn {
-  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1rem;
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+  max-width: 250px; /* Limit maximum width */
   margin: 0.5rem;
   border: none;
   cursor: pointer;
@@ -892,7 +905,12 @@ section:nth-child(odd) {
   font-family: var(--body-font);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
+.button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 /* Active Button Style */
 .category-btn.active {
   background: var(--selected-color);

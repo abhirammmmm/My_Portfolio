@@ -1,0 +1,151 @@
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  /* 
+        Change favorite color
+        Default: hsl(230, 55%, 55%)
+        Purple: hsl(245, 55%, 55%) - Blue: hsl(210, 55%, 55%)
+        Pink: hsl(340, 55%, 55%) - Green: hsl(162, 55%, 55%)
+        Orange: hsl(14, 55%, 55%)
+
+        For more colors visit: https://colors.dopely.top/color-pedia
+        -> Choose any color 
+        -> Click on tab (Color Conversion)
+        -> Copy the color mode (HSL)
+  */
+  --hue: 230;
+  --certificates-color: hsl(var(--hue), 35%, 15%);
+  --first-color: hsl(var(--hue), 55%, 55%);
+  --first-color-light: hsl(var(--hue), 55%, 65%);
+  --first-color-alt: hsl(var(--hue), 50%, 50%);
+  --title-color: hsl(var(--hue), 30%, 95%);
+  --text-color: hsl(var(--hue), 20%, 80%);
+  --text-color-light: hsl(var(--hue), 20%, 70%);
+  --selected-color: hsl(var(--hue), 80%, 50%);
+  --body-color: hsl(var(--hue), 40%, 16%);
+  --container-color: hsl(var(--hue), 40%, 20%);
+  --section-hover-color: hsl(var(--hue), 40%, 10%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Syne", sans-serif;
+  --biggest-font-size: 3rem;
+  --big-font-size: 1.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+}
+
+/* Existing styles maintained */
+
+/*=============== CERTIFICATES SECTION ===============*/
+
+/* Container for buttons with Flexbox */
+.certificates__categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Allow buttons to wrap if needed */
+}
+
+/* Responsive button styles */
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1rem;
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+  max-width: 220px; /* Limit maximum width */
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+/* Button icon styles */
+.button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Medium screen adjustments */
+@media screen and (max-width: 1024px) {
+  .category-btn {
+    flex: 1 1 180px;
+    max-width: 200px;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Tablet adjustments */
+@media screen and (max-width: 768px) {
+  .category-btn {
+    flex: 1 1 150px;
+    max-width: 180px;
+    padding: 0.4rem 0.7rem;
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+  .category-btn {
+    flex: 1 1 120px;
+    max-width: 150px;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Shorten button names on very small screens */
+@media screen and (max-width: 480px) {
+  .category-btn[data-category="programming"]::after {
+    content: "Code";
+  }
+  
+  .category-btn[data-category="machine-learning"]::after {
+    content: "ML";
+  }
+  
+  .category-btn[data-category="data-science"]::after {
+    content: "Data";
+  }
+  
+  .category-btn[data-category="web-development"]::after {
+    content: "Web Dev";
+  }
+
+  /* Hide original text */
+  .category-btn span {
+    display: none;
+  }
+}
+
+/* Existing styles remain unchanged */

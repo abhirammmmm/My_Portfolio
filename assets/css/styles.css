@@ -1733,3 +1733,78 @@ img {
   body { font-size: 1.125rem; }
 }
 
+/*==================== CV FORM ENHANCEMENT ====================*/
+.cv__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  background-color: hsl(var(--hue), 40%, 22%);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.email-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cv__input {
+  background-color: hsl(var(--hue), 30%, 25%);
+  border: 1px solid hsl(var(--hue), 20%, 40%);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--title-color);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  width: 143%;
+  max-width: 1000px;
+}
+
+
+.cv__input::placeholder {
+  color: var(--text-color-light);
+}
+
+.cv__input:focus {
+  border-color: var(--first-color-light);
+  outline: none;
+  box-shadow: 0 0 0 3px hsla(var(--hue), 55%, 55%, 0.2);
+}
+
+.cv__submit {
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+  background-color: var(--first-color);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cv__submit:hover {
+  background-color: var(--first-color-alt);
+  transform: translateY(-2px);
+}
+
+.cv__feedback {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .cv__form {
+    padding: 1.5rem;
+  }
+
+  .cv__submit {
+    width: 100%;
+    text-align: center;
+  }
+}

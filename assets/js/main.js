@@ -104,33 +104,31 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Prevent default form submission behavior
 
         const email = emailInput.value;
-        if (validateEmail(email)) {
-            // Use the FormData API to send the email through Web3Forms
-            const formData = new FormData(emailForm);
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json())
-              .then(result => {
-                  if (result.success) {
-                      cvFeedback.innerHTML = `Thank you! Your request has been sent. I will review your email and send the CV manually.`;
-                      cvFeedback.style.color = 'green';
-                      emailInput.value = ''; // Clear input after successful submission
-                  } else {
-                      cvFeedback.innerHTML = `There was an issue with the request. Please try again later.`;
-                      cvFeedback.style.color = 'red';
-                  }
-              })
-              .catch(error => {
-                  cvFeedback.innerHTML = `Error: Unable to send the request. Please try again later.`;
-                  cvFeedback.style.color = 'red';
-              });
-        } else {
-            cvFeedback.innerHTML = `Please enter a valid email address.`;
-            cvFeedback.style.color = 'red';
-        }
+        if (validateForm()) {
+          const formData = new FormData(emailForm);
+          fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+          }).then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    cvFeedback.innerHTML = `Thank you! Your request has been sent. I’ll review it and respond shortly.`;
+                    cvFeedback.style.color = 'green';
+                    emailForm.reset();
+                } else {
+                    cvFeedback.innerHTML = `There was an issue with your request. Please try again.`;
+                    cvFeedback.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                cvFeedback.innerHTML = `Error: Unable to send request. Try again later.`;
+                cvFeedback.style.color = 'red';
+            });
+      } else {
+          cvFeedback.innerHTML = `Please fill all fields with valid information.`;
+          cvFeedback.style.color = 'red';
+      }
     });
-
     // Close the form and hide explanation on "X" click
     closeFormButton.addEventListener('click', function () {
         cvExplanation.classList.remove('show-element'); // Hide the explanation
@@ -143,6 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
+    }
+    // Add to existing validateEmail function or create new one
+    function validateForm() {
+      const email = emailInput.value.trim();
+      const name = document.querySelector('[name="name"]').value.trim();
+      const affiliation = document.querySelector('[name="affiliation"]').value.trim();
+      const message = document.querySelector('[name="message"]').value.trim();
+
+      if (!validateEmail(email)) return false;
+      if (!name || !affiliation || !message) return false;
+
+    return true;
     }
 });
 
@@ -267,7 +277,7 @@ window.addEventListener('scroll', scrollActive);
 
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrllReveal({
+const sr = ScrollReveal({
     origin: 'top', distance: '60px', duration: 2500, delay: 400,
 })
 sr.reveal('.home__data, .experience, .skills, .contact__container')
